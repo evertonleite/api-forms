@@ -1,18 +1,22 @@
 from django.db import models
-import re 
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-class User(models.Model):
+class User(AbstractUser):
     USER_CHOICES = (
         ("user", "Usuário"),
         ("admin", "Administrador")
     )
        
-    type_user = models.CharField(max_length=20, choices=USER_CHOICES, default='user', null=False, blank=False)
-    name = models.CharField(max_length=254, null=False, blank=False)
-    email = models.EmailField(max_length= 254, unique=True, null=False, blank=False)
-    password = models.CharField(max_length=20, null=False, blank=False)
+    name = models.CharField(max_length=254, null=False)
+    email = models.EmailField(max_length= 254, unique=True, null=False)
+    password = models.CharField(max_length=20, null=False)
+    type_user = models.CharField(max_length=20, choices=USER_CHOICES, default='user', null=False)
+    username = None
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
     
     def __str__(self):
         return self.name
