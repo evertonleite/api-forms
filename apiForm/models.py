@@ -13,7 +13,6 @@ class User(AbstractUser):
     password = models.CharField(max_length=20, null=False)
     type_user = models.CharField(max_length=20, choices=USER_CHOICES, default='user', null=False)
     username = None
-    teste = models.CharField(max_length=10)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
